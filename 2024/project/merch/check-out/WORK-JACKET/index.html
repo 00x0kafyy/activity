@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Merch Checkout</title>
+    <link rel="stylesheet" href="/merch/check-out/style.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="back-button">
+      <a href="/merch/index.html">
+      <img src="/img/icon/back-icon.png" alt="Back" />
+    </a>
+    </div>
+    <div class="logo">
+      <div class="logo-circle"><a href="/index.html"><img src="/img/logos.png" alt="Logo For Revenge"></a></div>
+      <div class="logo-text">For Revenge</div>
+    </div>
+  </nav>
+  
+
+  <div class="container">
+    <div class="product-img">
+      <img src="/img/tshirt/work-jacket.jpg" alt="T-Shirt Image">
+    </div>
+    <div class="product-info">
+      <h2>Jacket - WORK JACKET</h2>
+      <p>Black - White</p>
+
+      <label>Size</label>
+      <select id="size">
+        <option value="">Choose Option</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+
+      <label>Color</label>
+      <select id="color">
+        <option value="">Choose Option</option>
+        <option value="Black">Black</option>
+      </select>
+
+      <div class="quantity-control">
+        <button onclick="changeQty(-1)">-</button>
+        <input type="number" id="quantity" value="1" min="1" readonly>
+        <button onclick="changeQty(1)">+</button>
+      </div>
+
+      <p id="totalHarga">Price: Rp300.000</p>
+
+      <button class="checkout-btn" onclick="showPopup()">Check Out</button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Form Popup -->
+  <div class="popup" id="checkoutPopup">
+    <h3>Checkout Form</h3>
+    <input type="text" placeholder="Nama Lengkap" id="name">
+    <input type="text" placeholder="No HP" id="phone">
+    <input type="text" placeholder="Alamat Lengkap" id="address">
+    <p id="popupTotal">Price: Rp300.000</p>
+    <button onclick="submitOrder()">Submit</button>
+    <button class="close-popup" onclick="hidePopup()">Close</button>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="business">
+        <p>081322997882 (Putri)</p>
+        <p>085175916897 (Kiki Vialal)</p>
+        <p>support@forrevenge.com</p>
+      </div>
+      <div class="social-media">
+        <a href="https://instagram.com/forrevengeofficial"><i class="fab fa-instagram"></i></a>
+          <a href="https://open.spotify.com/artist/0f6TyESD8E1mD2oLJ4TGv1"><i class="fab fa-spotify"></i></a>
+          <a href="https://www.youtube.com/channel/UC0jzYE0EfxcvcDMhfgaBo_g"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="about-footer">
+        <p>History</p>
+        <p>Discography</p>
+      </div>
+    </div>
+    <p class="copyright">Copyright &copy;2023 For Revenge | Privacy Policy | About Us | Faq | Contact Person</p>
+  </footer>
+
+  <!-- Success Popup -->
+  <div class="success-modal" id="successModal">
+    <h3>✅ Pesanan Berhasil!</h3>
+    <p>Terima kasih telah melakukan pemesanan.</p>
+    <p>Konfimarsi Payment silahkan cek WhatsApp.</p>
+    <button class="close-success" onclick="closeSuccess()">Tutup</button>
+  </div>
+
+  <script src="script.js">
+  </script>
+
+</body>
+</html>
