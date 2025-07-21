@@ -1,0 +1,479 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  background-color: #111;
+  color: white;
+  padding: 0;
+}
+
+:root {
+  --progress: 0%;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #000;
+  border-bottom: 1px solid #333;
+}
+
+.navbar .back-button img {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .logo-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+  padding: 80px 20px 20px; /* padding-top ditambah karena navbar fixed */
+}
+
+header h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.album-section {
+  margin-bottom: 50px;
+}
+
+.album-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.album-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.album-slider::-webkit-scrollbar {
+  height: 8px;
+}
+
+.album-slider::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+.album-card {
+  background-color: #222;
+  border-radius: 10px;
+  min-width: 200px;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.album-card:hover {
+  transform: scale(1.05);
+}
+
+.album-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
+}
+
+.album-info {
+  padding: 10px;
+}
+
+.album-info h3 {
+  margin-bottom: 5px;
+}
+
+.album-info span {
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* ===== MINI PLAYER ===== */
+#mini-player {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1px 20px 12px; /* atas kanan-kiri bawah */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 -5px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: white;
+  z-index: 9999;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+
+.player-controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.player-controls button:hover {
+  transform: scale(1.1);
+}
+
+#play-pause {
+  font-size: 2.2rem;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-container {
+  width: 100%;
+  padding: 8px 0;
+  position: relative;
+}
+
+#track-progress {
+  --progress: 0%;
+  -webkit-appearance: none;
+  width: 70%; /* Sesuaikan panjang yang lo mau */
+  height: 4px;
+  background: linear-gradient(to right, #1db954 var(--progress), #444 var(--progress));
+  border-radius: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: height 0.2s;
+  margin: 0 auto;
+  display: block;
+}
+
+#track-progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#track-progress:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+#track-progress:hover {
+  height: 6px;
+}
+
+.progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 70%;
+  margin: 0 auto; /* ⬅️ ini yang bikin dia ketengah */
+}
+
+.progress-wrapper input[type=range] {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-wrapper input[type=range]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #1db954 0%, #1db954 var(--progress, 0%), transparent var(--progress, 0%), transparent 100%);
+}
+
+.progress-wrapper input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.progress-wrapper input[type=range]:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+.progress-wrapper span {
+  font-size: 12px;
+  color: #aaa;
+  min-width: 40px;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s;
+}
+
+.close-button:hover {
+  transform: scale(1.2);
+  color: red;
+}
+
+
+
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #222;
+  padding: 50px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.social-media a {
+  color: white;
+}
+
+.social-media i {
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+/* ===== ALBUM CARD IMAGE ===== */
+.album-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+}
+
+.album-image-wrapper img {
+  display: block;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.album-card:hover .album-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  padding: 15px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.play-icon img {
+  height: 60px;
+  width: 60px;
+  position: relative;
+  top: 48px;
+  left: 78px;
+}
+
+.album-card:hover .play-icon {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* ===== MINI PLAYER INFO ===== */
+.mini-player-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: -40px;
+}
+
+.mini-player-info img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  position: relative;
+  top: 20px;
+}
+
+#mini-title {
+  font-weight: bold;
+  font-size: 14px;
+  position: relative;
+  top: 20px;
+}
+
+#mini-artist {
+  font-size: 12px;
+  color: #aaa;
+  position: relative;
+  top: 20px;
+}
+
+#repeat,
+#volume {
+  margin-left: 20px;
+}
+
+.lyrics-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute; /* agar posisinya bebas */
+  bottom: 48px; /* kamu bisa atur ulang */
+  left: 565px;
+  z-index: 1001;
+  padding: 0;
+}
+
+.lyrics-btn img {
+  width: 25px;  /* ukuran ikon */
+  height: 25px;
+  transition: transform 0.2s;
+}
+
+.lyrics-btn:hover img {
+  transform: scale(1.2);
+}
+
+
+#lyrics-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background-color: #23383F;
+  color: #B9D2DA;
+  font-weight: bold;
+  z-index: 1002;
+  padding: 20px;
+  display: none;
+  overflow-y: auto;
+  transition: all 0.4s ease-in-out;
+  backdrop-filter: blur(10px);
+}
+
+#lyrics-panel.show {
+  display: block;
+}
+
+#close-lyrics {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  float: right;
+  cursor: pointer;
+  position: absolute;
+  bottom: 510px;
+  left: 480px;
+}
+
+#lyrics-content {
+  margin-top: 80px;
+}
+
+#lyrics-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+#lyrics-lines p {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.lyric-line {
+  transition: color 0.3s, font-size 0.3s;
+  color: #aaa;
+  font-size: 25px;
+}
+
+.lyric-line.active {
+  color: white;
+  font-size: 35px;
+}
+
+.lyric-line.read {
+  color: #ccc;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+
+/* ===== FADE IN ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
