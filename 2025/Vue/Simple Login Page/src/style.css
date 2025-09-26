@@ -1,0 +1,91 @@
+:root {
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+background-color: rgb(53, 53, 53);
+}
+
+input {
+  display: block;
+  margin: 0px auto;
+  border-radius: 10px;
+
+}
+
+a, p {
+  display: block;
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  border-radius: 10px;
+  background-color: rgb(53, 53, 53);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;  
+}
+
+h1 {
+  text-align: center;
+  justify-content: center;
+}
+
+label {
+  display: block;
+  text-align: center;
+}
+
+.container {
+  max-width: 350px;
+  margin: 130px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+p.success {
+  background-color: green;
+  color: white;
+  padding: 8px;
+}
+
+p.error {
+  background-color: red;
+  color: white;
+  padding: 8px;
+}
+
+.ul-container {
+  width: 100%;             /* biar full lebar */
+  display: flex;
+  justify-content: center; /* item rata tengah horizontal */
+  align-items: center;     /* item rata tengah vertical (kalau ada height) */
+  gap: 20px;               /* jarak antar item */
+  padding: 0;              /* reset bawaan browser */
+  margin: 0 auto;          /* biar ke tengah */
+}
+
+
+.li-container {
+  padding: 10px;
+  border: 5px solid black;
+  list-style-type: none;
+}
+
+.li-container a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.container-hahay {
+  padding: 200px;
+  border: 5px solid black;
+  margin: 5px;
+}
+
+.container-hahay p {
+  text-align: center;
+}
